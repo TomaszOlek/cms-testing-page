@@ -27,7 +27,7 @@ const GATSBY_REQUIRED_RULES: string = path.join(
 const SITE_URL =
   env.NODE_ENV === 'development'
     ? `http://localhost:8000`
-    : 'https://www.example.com'
+    : env.WORDPRESS_URL
 
 const OMIT_PATHS = ['/404', '/preview']
 
@@ -146,49 +146,49 @@ const config: GatsbyConfig = {
     },
 
     // CMS
-    // {
-    //   resolve: `gatsby-source-wordpress`,
-    //   options: {
-    //     url: `${env.WORDPRESS_URL}/graphql`,
-    //     html: {
-    //       useGatsbyImage: true,
-    //       generateWebpImages: true,
-    //     },
-    //     schema: {
-    //       perPage: 9,
-    //       requestConcurrency: 3,
-    //       previewRequestConcurrency: 2,
-    //     },
-    //     type: {
-    //       MediaItem: {
-    //         excludeFieldNames: [
-    //           `dateGmt`,
-    //           `date`,
-    //           `parent`,
-    //           `ancestors`,
-    //           `comments`,
-    //           `author`,
-    //           `authorDatabaseId`,
-    //           `authorId`,
-    //           `commentCount`,
-    //           `commentStatus`,
-    //           `enclosure`,
-    //           `desiredSlug`,
-    //           `modified`,
-    //           `modifiedGmt`,
-    //           `parentId`,
-    //           `parentDatabaseId`,
-    //         ],
-    //         localFile: {
-    //           requestConcurrency: 5,
-    //         },
-    //       },
-    //     },
-    //     develop: {
-    //       nodeUpdateInterval: 10000,
-    //     },
-    //   },
-    // },
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        url: `${env.WORDPRESS_URL}/graphql`,
+        html: {
+          useGatsbyImage: true,
+          generateWebpImages: true,
+        },
+        schema: {
+          perPage: 9,
+          requestConcurrency: 3,
+          previewRequestConcurrency: 2,
+        },
+        type: {
+          MediaItem: {
+            excludeFieldNames: [
+              `dateGmt`,
+              `date`,
+              `parent`,
+              `ancestors`,
+              `comments`,
+              `author`,
+              `authorDatabaseId`,
+              `authorId`,
+              `commentCount`,
+              `commentStatus`,
+              `enclosure`,
+              `desiredSlug`,
+              `modified`,
+              `modifiedGmt`,
+              `parentId`,
+              `parentDatabaseId`,
+            ],
+            localFile: {
+              requestConcurrency: 5,
+            },
+          },
+        },
+        develop: {
+          nodeUpdateInterval: 10000,
+        },
+      },
+    },
 
     // SEO
     {
