@@ -25,9 +25,7 @@ const GATSBY_REQUIRED_RULES: string = path.join(
 )
 
 const SITE_URL =
-  env.NODE_ENV === 'development'
-    ? `http://localhost:8000`
-    : env.WORDPRESS_URL
+  env.NODE_ENV === 'development' ? `http://localhost:8000` : env.WORDPRESS_URL
 
 const OMIT_PATHS = ['/404', '/preview']
 
@@ -49,6 +47,14 @@ const config: GatsbyConfig = {
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     'gatsby-plugin-no-sourcemaps',
+
+    // Google tag manager
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-WF98297T',
+      },
+    },
 
     // i18n translations
     {
